@@ -1,0 +1,71 @@
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="main-style.css">
+    <link href='http://fonts.googleapis.com/css?family=Offside' rel='stylesheet' type='text/css'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  </head>
+  <body>
+    <header>
+      <div id="white-banner">
+
+      </div>
+      <h1 id="main-header"><b>5</b>Side</h1>
+    </header>
+    <div id="section-white">
+      <img id="iosApp" src="iphone.png"/>
+    </div>
+    <div id="section-green">
+      <div id="countdown"></div>
+    </div>
+      <img src="pin.png" style="display: none"/>
+  </body>
+
+  <script>
+  // A $( document ).ready() block.
+  $( document ).ready(function() {
+
+
+    $( window ).scroll(function() {
+      if ($(window).scrollTop() > 5) {
+        var position = 0;
+        $("#main-header").animate({'left':position},'slow');
+      } else {
+        $('#main-header').css( "color", "rgb(76, 123, 76)" );
+      }
+    });
+
+
+var end = new Date('02/19/2012 10:1 AM');
+
+    var _second = 1000;
+    var _minute = _second * 60;
+    var _hour = _minute * 60;
+    var _day = _hour * 24;
+    var timer;
+
+    function showRemaining() {
+        var now = new Date();
+        var distance = end - now;
+        if (distance < 0) {
+
+            clearInterval(timer);
+            document.getElementById('countdown').innerHTML = 'EXPIRED!';
+
+            return;
+        }
+        var days = Math.floor(distance / _day);
+        var hours = Math.floor((distance % _day) / _hour);
+        var minutes = Math.floor((distance % _hour) / _minute);
+        var seconds = Math.floor((distance % _minute) / _second);
+
+        document.getElementById('countdown').innerHTML = days + 'days ';
+        document.getElementById('countdown').innerHTML += hours + 'hrs ';
+        document.getElementById('countdown').innerHTML += minutes + 'mins ';
+        document.getElementById('countdown').innerHTML += seconds + 'secs';
+    }
+
+    timer = setInterval(showRemaining, 1000);
+
+  });
+  </script>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sticky Header</title>
+
+    <!-- import Google font -->
+    <link href='http://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="main-style.css">
+    <link href='http://fonts.googleapis.com/css?family=Offside' rel='stylesheet' type='text/css'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="javascripts/application-2edabe9a.js" type="text/javascript"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC3xKdIZX4-iABcf9lv74hKy_MG503WAPw"></script>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    <script>
+    // This example displays a marker at the center of Australia.
+    // When the user clicks the marker, an info window opens.
+
+    function initialize() {
+    var myLatlng = new google.maps.LatLng(51.556021,-0.279519);
+    var mapOptions = {
+    zoom: 17,
+    disableDefaultUI:true,
+    center: myLatlng,
+    minZoom: 17,
+    maxZoom: 17,
+    draggable: false
+
+    };
+
+
+    var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+    var contentString = '<div id="content">'+
+      '<div id="siteNotice">'+
+      '</div>'+
+      '<h1 id="firstHeading" class="firstHeading">United Kingdom</h1>'+
+      '<div id="bodyContent">'+
+      '<p><b>United Kingdom</b><b></b>...... ' +
+      '......' +
+      '<br>'+
+      '<br>'+
+      '<img src="img/unionJack.png" style="border-radius:100px;">' +
+      '.</p>'+
+      '<p>'+
+      ''+
+      '</p>'+
+      '</div>'+
+     '</div>';
+
+    var infowindow = new google.maps.InfoWindow({
+      content: contentString
+    });
+
+    var marker = new google.maps.Marker({
+      position: myLatlng,
+      map: map,
+      title: 'Uluru (Ayers Rock)'
+      // icon: 'arvis.jpg'
+    });
+
+    google.maps.event.addListener(marker, 'click', function() {
+    infowindow.open(map,marker);
+    });
+
+    }
+
+    google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+    </head>
+
+    <body>
+
+    <!-- our markup -->
+    <header><h1><b>5</b>Side</h1></header>
+    <div id="section-white">
+      <img id="iosApp" src="iphoneApp.png"/>
+    </div>
+    <div id="section-green">
+      <!-- <div id="map-canvas"></div> -->
+      <div id="green-overlay">
+        <h5 id="contact">
+          <a href="mailto:jamie.webb@warwick.ac.uk?Subject=Hey%20Jamie" target="_top">Contact</a>
+        </h5>
+      </div>
+
+      <div>
+        <h3 id="intro-text">The App<br> For 5-Aside</h3>
+      </div>
+      <div id="countdown"></div>
+    </div>
+
+    <!-- write script to toggle class on scroll -->
+    <script>
+
+$(window).scroll(function() {
+    if ($(this).scrollTop() > 1){
+        $('header').addClass("sticky");
+    }
+    else{
+        $('header').removeClass("sticky");
+    }
+
+    var end = new Date('04/18/2015 10:1 AM');
+
+        var _second = 1000;
+        var _minute = _second * 60;
+        var _hour = _minute * 60;
+        var _day = _hour * 24;
+        var timer;
+
+        function showRemaining() {
+            var now = new Date();
+            var distance = end - now;
+            if (distance < 0) {
+
+                clearInterval(timer);
+                document.getElementById('countdown').innerHTML = 'EXPIRED!';
+
+                return;
+            }
+            var days = Math.floor(distance / _day);
+            var hours = Math.floor((distance % _day) / _hour);
+            var minutes = Math.floor((distance % _hour) / _minute);
+            var seconds = Math.floor((distance % _minute) / _second);
+
+            document.getElementById('countdown').innerHTML = days + 'days ';
+            document.getElementById('countdown').innerHTML += hours + 'hrs ';
+            document.getElementById('countdown').innerHTML += minutes + 'mins ';
+            document.getElementById('countdown').innerHTML += seconds + 'secs';
+        }
+
+        timer = setInterval(showRemaining, 1000);
+});
+</script>
+</body>
+</html>
