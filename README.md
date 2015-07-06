@@ -1,5 +1,3 @@
 # 5Side 
 
-Sticky_header.html is the main page!
-
-Shoutout to Vrushik!
+Sticky_header.html is the home page!
