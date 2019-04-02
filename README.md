@@ -1,4 +1,4 @@
-# 5Side 
+# FiveAside 
 
 Football Hackathon project
 
